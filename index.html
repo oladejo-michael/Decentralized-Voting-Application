@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Decentralized Voting Application</title>
+  </head>
+  <body>
+    <h1>Decentralized Voting Application</h1>
+    
+    <div>
+      <h2>Cast Your Vote</h2>
+      <label for="voteOption">Select an Option:</label>
+      <select id="voteOption">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <button onclick="castVote()">Submit</button>
+    </div>
+    
+    <div>
+      <h2>Vote Results</h2>
+      <div>
+        <span>Option 1:</span>
+        <span id="option1Count"></span>
+      </div>
+      <div>
+        <span>Option 2:</span>
+        <span id="option2Count"></span>
+      </div>
+      <div>
+        <span>Option 3:</span>
+        <span id="option3Count"></span>
+      </div>
+    </div>
+    
+    <script src="web3.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
