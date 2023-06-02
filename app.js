@@ -58,13 +58,6 @@ async function castVote() {
     return;
   }
 
-  // Check if the user is authorized
-  const isAuthorized = await contract.methods.isAuthorized(web3.currentProvider.selectedAddress).call();
-  if (!isAuthorized) {
-    alert('You are not authorized to vote.');
-    return;
-  }
-
   const selectedOption = document.getElementById('voteOption').value;
 
   try {
