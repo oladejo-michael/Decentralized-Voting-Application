@@ -1,46 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Decentralized Voting Application</title>
-    <style>
-        body {
-            background-color: #f1f1f1;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            margin-top: 40px;
-        }
-        
-        h1 {
-            margin-top: 0;
-        }
-        
-        /* Additional styles for your content */
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 Voting App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .chart-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Decentralized Voting Application</h1>
+  <div class="container">
+    <h1>Web3 Voting App</h1>
+
+    <div class="chart-container">
+      <canvas id="voteChart" aria-label="Vote Results Chart" role="img"></canvas>
     </div>
-    
-    <div class="container">
-        <!-- Your voting application content goes here -->
+
+    <div>
+      <label for="voteOption">Vote Option:</label>
+      <select id="voteOption">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
     </div>
+
+    <button onclick="castVote()">Cast Vote</button>
+
+    <div>
+      <h3>Vote Counts:</h3>
+      <p>Option 1: <span id="option1Count"></span></p>
+      <p>Option 2: <span id="option2Count"></span></p>
+      <p>Option 3: <span id="option3Count"></span></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="voting.js"></script>
 </body>
 </html>
