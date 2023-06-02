@@ -48,7 +48,21 @@ async function castVote() {
     const deployedNetwork = networks[networkId];
     const contractAddress = deployedNetwork.address;
     const contract = new web3.eth.Contract(abi, contractAddress);
+  
+    // Check if the user is authorized to vote
+    const isAuthorized = await contract.methods.isAuthorized(web3.currentProvider.selectedAddress).call();
+    if (!isAuthorized) {
+      alert('You are not authorized to vote.');
+      return;
+    }
 
+    // Check if the user has already voted
+    const hasVoted = await contract.methods.hasVoted(web3.currentProvider.selectedAddress).call();
+    if (hasVoted) {
+      alert('You have already voted.');
+      return;
+    }
+    
     // Cast the vote
     await contract.methods.castVote(selectedOption).send({ from: web3.currentProvider.selectedAddress });
 
