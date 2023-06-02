@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Decentralized Voting Application</title>
-  </head>
-  <body>
-    <h1>Decentralized Voting Application</h1>
-    
-    <div>
-      <h2>Cast Your Vote</h2>
-      <label for="voteOption">Select an Option:</label>
-      <select id="voteOption">
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-      </select>
-      <button onclick="castVote()">Submit</button>
+    <style>
+        body {
+            background-color: #f1f1f1;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin-top: 40px;
+        }
+        
+        h1 {
+            margin-top: 0;
+        }
+        
+        /* Additional styles for your content */
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Decentralized Voting Application</h1>
     </div>
     
-    <div>
-      <h2>Vote Results</h2>
-      <div>
-        <span>Option 1:</span>
-        <span id="option1Count"></span>
-      </div>
-      <div>
-        <span>Option 2:</span>
-        <span id="option2Count"></span>
-      </div>
-      <div>
-        <span>Option 3:</span>
-        <span id="option3Count"></span>
-      </div>
+    <div class="container">
+        <!-- Your voting application content goes here -->
     </div>
-    
-    <script src="web3.min.js"></script>
-    <script src="app.js"></script>
-  </body>
+</body>
 </html>
