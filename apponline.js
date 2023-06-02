@@ -1,6 +1,8 @@
 import Web3 from 'web3';
+import Chart from 'chart.js';
 
 let contract;
+let chart;
 
 window.addEventListener('load', async () => {
   // Check if Web3 is available
@@ -34,9 +36,13 @@ window.addEventListener('load', async () => {
       return;
     }
 
-    // Update the vote counts
+    // Update the vote counts and re-render the chart
     await updateVoteCounts();
+    renderChart();
   });
+
+  // Render the initial chart
+  renderChart();
 });
 
 async function updateVoteCounts() {
@@ -49,6 +55,45 @@ async function updateVoteCounts() {
   document.getElementById('option1Count').textContent = option1Count;
   document.getElementById('option2Count').textContent = option2Count;
   document.getElementById('option3Count').textContent = option3Count;
+}
+
+function renderChart() {
+  const option1Count = parseInt(document.getElementById('option1Count').textContent);
+  const option2Count = parseInt(document.getElementById('option2Count').textContent);
+  const option3Count = parseInt(document.getElementById('option3Count').textContent);
+
+  if (chart) {
+    // If chart already exists, update the data
+    chart.data.datasets[0].data = [option1Count, option2Count, option3Count];
+    chart.update();
+  } else {
+    // Create a new chart
+    const chartData = {
+      labels: ['Option 1', 'Option 2', 'Option 3'],
+      datasets: [{
+        label: 'Vote Counts',
+        data: [option1Count, option2Count, option3Count],
+        backgroundColor: ['#ff6384', '#36a2eb', '#ffce56']
+      }]
+    };
+
+    const chartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    };
+
+    const chartCanvas = document.getElementById('voteChart').getContext('2d');
+    chart = new Chart(chartCanvas, {
+      type: 'bar',
+      data: chartData,
+      options: chartOptions
+    });
+  }
 }
 
 async function castVote() {
@@ -66,6 +111,9 @@ async function castVote() {
 
     // Update the vote counts
     await updateVoteCounts();
+
+    // Re-render the chart
+    renderChart();
 
     alert('Vote casted successfully!');
   } catch (error) {
