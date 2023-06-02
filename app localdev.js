@@ -1,4 +1,5 @@
 import Web3 from 'web3';
+import Chart from 'chart.js';
 
 let contract;
 
@@ -37,6 +38,30 @@ window.addEventListener('load', async () => {
     // Update the vote counts
     await updateVoteCounts();
   });
+
+  // Create a bar chart
+  const ctx = document.getElementById('voteChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Option 1', 'Option 2', 'Option 3'],
+      datasets: [{
+        label: 'Vote Counts',
+        data: [],
+        backgroundColor: ['#ff6384', '#36a2eb', '#ffce56'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          stepSize: 1
+        }
+      }
+    }
+  });
 });
 
 async function updateVoteCounts() {
@@ -49,6 +74,11 @@ async function updateVoteCounts() {
   document.getElementById('option1Count').textContent = option1Count;
   document.getElementById('option2Count').textContent = option2Count;
   document.getElementById('option3Count').textContent = option3Count;
+
+  // Update the vote counts in the chart
+  const chart = Chart.getChart('voteChart');
+  chart.data.datasets[0].data = [option1Count, option2Count, option3Count];
+  chart.update();
 }
 
 async function castVote() {
